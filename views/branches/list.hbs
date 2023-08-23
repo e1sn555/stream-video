@@ -1,0 +1,49 @@
+<ul class='breadcrumb'>
+  <li class='breadcrumb-item'><a href='/admin'>Ana səhifə</a></li>
+  <li class='breadcrumb-item'><span>Filiallar</span></li>
+</ul>
+<div class='row mt-4'>
+  <div class='col-md-10 mx-auto'>
+    <div class='d-flex justify-content-between align-items-center'>
+      <h4 style='margin: 0'>Filiallar</h4>
+      <a href='/admin/branches/create' class='btn btn-primary'>Yeni filial əlavə
+        et</a>
+    </div>
+  </div>
+  <div class='col-md-10 mt-4 mx-auto'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Ad</th>
+          <th>Ünvan</th>
+          <th>Yaranma tarixi</th>
+          <th>Əməliyyatlar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each branches}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{address}}</td>
+            <td>{{_createdAt}}</td>
+            <td>
+              <a
+                href='/admin/branches/edit/{{id}}'
+                class='btn btn-warning'
+              >Düzəliş et</a>
+              <button
+                class='btn btn-danger delete_branch'
+                id='{{id}}'
+              >Sil</button>
+            </td>
+          </tr>
+        {{/each}}
+        {{#unless branches}}
+          <tr>
+            <td colspan='4' class='text-center'>Filial tapılmadı</td>
+          </tr>
+        {{/unless}}
+      </tbody>
+    </table>
+  </div>
+</div>

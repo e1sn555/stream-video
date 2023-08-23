@@ -1,0 +1,49 @@
+<ul class='breadcrumb'>
+  <li class='breadcrumb-item'><a href='/'>Ana səhifə</a></li>
+  <li class='breadcrumb-item'><a href='/admin/branches'>Filiallar</a></li>
+  <li class='breadcrumb-item'><span>{{branch.name}}</span></li>
+</ul>
+<div class='row mt-4'>
+  <div class='col-md-10 mx-auto'>
+    <h4>
+      {{branch.name}}
+      filialını düzəliş et
+    </h4>
+  </div>
+  <div class='col-md-10 mt-4 mx-auto'>
+    <form action='/admin/branches/edit/{{branch.id}}' method='post'>
+      <div class='form-group'>
+        <label for='name'>Ad</label>
+        <input
+          id='name'
+          name='name'
+          type='text'
+          class='form-control'
+          required
+          value='{{branch.name}}'
+        />
+      </div>
+      <div class='form-group'>
+        <label for='address'>Ünvan</label>
+        <textarea
+          name='address'
+          id='address'
+          class='form-control'
+        >{{branch.address}}</textarea>
+      </div>
+      <div class='form-group'>
+        <label for='password'>Şifrə</label>
+        <input
+          type='password'
+          name='password'
+          id='password'
+          class='form-control'
+        />
+      </div>
+      <div class='form-group d-flex'>
+        <button class='btn btn-success'>Yadda saxla</button>
+        <a href='/admin/branches' class='btn btn-secondary ml-2'>Geri</a>
+      </div>
+    </form>
+  </div>
+</div>

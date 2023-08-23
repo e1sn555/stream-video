@@ -1,0 +1,170 @@
+<html>
+  <head>
+    <title>145 Group</title>
+    <meta charset='utf-8' />
+    <meta content='ie=edge' http-equiv='x-ua-compatible' />
+    <meta content='template language' name='keywords' />
+    <meta content='Tamerlan Soziev' name='author' />
+    <meta content='Admin dashboard html template' name='description' />
+    <meta content='width=device-width,initial-scale=1' name='viewport' />
+    <link href='/favicon.png' rel='shortcut icon' />
+    <link href='/apple-touch-icon.png' rel='apple-touch-icon' />
+    <link
+      href='../fast.fonts.net/cssapi/487b73f1-c2d1-43db-8526-db577e4c822b.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/select2/dist/css/select2.min.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/bootstrap-daterangepicker/daterangepicker.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/dropzone/dist/dropzone.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/fullcalendar/dist/fullcalendar.min.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css'
+      rel='stylesheet'
+    />
+    <link
+      href='/bower_components/slick-carousel/slick/slick.css'
+      rel='stylesheet'
+    />
+    <link href='/css/main5739.css?version=4.5.0' rel='stylesheet' />
+  </head>
+  <body
+    class='menu-position-side menu-side-left full-screen with-content-panel'
+  >
+    <div class='all-wrapper with-side-panel solid-bg-all'>
+      <div class='layout-w'>
+        <div
+          class='menu-w color-scheme-light color-style-transparent menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link'
+        >
+          <div class='logo-w'>
+            <a class='logo' href='/admin'>
+              <div class='logo-element'></div>
+              <div class='logo-label'>145</div>
+            </a>
+          </div>
+          <div class='logged-user-w avatar-inline'>
+            <div class='logged-user-i'>
+              <div class='avatar-w'><img alt='' src='/img/avatar1.jpg' /></div>
+              <div class='logged-user-info-w'>
+                <div class='logged-user-name'>{{user.name}}</div>
+              </div>
+              <div class='logged-user-toggler-arrow'><div
+                  class='os-icon os-icon-chevron-down'
+                ></div></div>
+              <div class='logged-user-menu color-style-bright'>
+                <div class='logged-user-avatar-info'>
+                  <div class='avatar-w'><img
+                      alt=''
+                      src='/img/avatar1.jpg'
+                    /></div>
+                  <div class='logged-user-info-w'>
+                    <div class='logged-user-name'>{{user.name}}</div>
+                  </div>
+                </div>
+                <div class='bg-icon'><i
+                    class='os-icon os-icon-wallet-loaded'
+                  ></i></div>
+                <ul>
+                  <li>
+                    <a href='/admin/logout'><i
+                        class='os-icon os-icon-signs-11'
+                      ></i><span>Logout</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <h1 class='menu-page-header'>Page Header</h1>
+          <ul class='main-menu'>
+            <li class='selected'>
+              <a href='/admin/branches'>
+                <div class='icon-w'>
+                  <div class='os-icon os-icon-layout'></div>
+                </div>
+                <span>Filiallar</span>
+              </a>
+            </li>
+            <li class='selected'>
+              <a href='/admin/videos'>
+                <div class='icon-w'>
+                  <div class='os-icon os-icon-video'></div>
+                </div>
+                <span>Videolar</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class='content-w'>
+          {{{body}}}
+        </div>
+      </div>
+      <div class='display-type'></div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script src='/bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='/bower_components/popper.js/dist/umd/popper.min.js'></script>
+    <script src='/bower_components/moment/moment.js'></script>
+    <script src='/bower_components/chart.js/dist/Chart.min.js'></script>
+    <script
+      src='/bower_components/select2/dist/js/select2.full.min.js'
+    ></script>
+    <script
+      src='/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js'
+    ></script>
+    <script src='/bower_components/ckeditor/ckeditor.js'></script>
+    <script
+      src='/bower_components/bootstrap-validator/dist/validator.min.js'
+    ></script>
+    <script
+      src='/bower_components/bootstrap-daterangepicker/daterangepicker.js'
+    ></script>
+    <script
+      src='/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js'
+    ></script>
+    <script src='/bower_components/dropzone/dist/dropzone.js'></script>
+    <script
+      src='/bower_components/editable-table/mindmup-editabletable.js'
+    ></script>
+    <script
+      src='/bower_components/datatables.net/js/jquery.dataTables.min.js'
+    ></script>
+    <script
+      src='/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'
+    ></script>
+    <script
+      src='/bower_components/fullcalendar/dist/fullcalendar.min.js'
+    ></script>
+    <script
+      src='/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js'
+    ></script>
+    <script src='/bower_components/tether/dist/js/tether.min.js'></script>
+    <script src='/bower_components/slick-carousel/slick/slick.min.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/util.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/alert.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/button.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/carousel.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/collapse.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/dropdown.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/modal.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/tab.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/tooltip.js'></script>
+    <script src='/bower_components/bootstrap/js/dist/popover.js'></script>
+    <script src='/js/demo_customizer5739.js?version=4.5.0'></script>
+    <script src='/js/app.js'></script>
+  </body>
+</html>

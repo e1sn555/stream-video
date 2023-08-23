@@ -1,0 +1,59 @@
+<ul class='breadcrumb'>
+  <li class='breadcrumb-item'><a href='/admin'>Ana səhifə</a></li>
+  <li class='breadcrumb-item'><span>Videolar</span></li>
+</ul>
+<div class='row mt-4'>
+  <div class='col-md-10 mx-auto'>
+    <div class='d-flex justify-content-between align-items-center'>
+      <h4 style='margin: 0'>Videolar</h4>
+      <a href='/admin/videos/create' class='btn btn-primary'>Yeni video əlavə et</a>
+    </div>
+  </div>
+  <div class='col-md-10 mt-4 mx-auto'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Video</th>
+          <th>Filiallar</th>
+          <th>Başlama tarixi</th>
+          <th>Bitmə tarixi</th>
+          <th>Yaranma tarixi</th>
+          <th>Əməliyyatlar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each videos}}
+          <tr>
+            <td>
+              <video width='160' height='100' controls>
+                <source
+                  src='http://cdn.145group.com/{{video}}'
+                  type='video/mp4'
+                />
+              </video>
+            </td>
+            <td>
+              {{#each branches}}
+                <span class='badge badge-primary'>{{name}}</span>
+              {{/each}}
+            </td>
+            <td>{{_createdAt}}</td>
+            <td>{{startDate}}</td>
+            <td>{{endDate}}</td>
+            <td>
+              <button
+                class='btn btn-danger delete_video'
+                id='{{id}}'
+              >Sil</button>
+            </td>
+          </tr>
+        {{/each}}
+        {{#unless videos}}
+          <tr>
+            <td colspan='5' class='text-center'>Video tapılmadı</td>
+          </tr>
+        {{/unless}}
+      </tbody>
+    </table>
+  </div>
+</div>
