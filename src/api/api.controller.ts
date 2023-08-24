@@ -14,6 +14,7 @@ import { VideoService } from 'src/video/video.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { ApiService } from './api.service';
 import { LoginDto } from './login.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('api')
 @ApiTags('api')
@@ -22,6 +23,7 @@ export class ApiController {
     private readonly videoService: VideoService,
     private readonly branchService: BranchService,
     private readonly apiService: ApiService,
+    private readonly configService: ConfigService,
   ) {}
 
   @Post('login')
@@ -72,7 +74,7 @@ export class ApiController {
       success: true,
       total: videoCount,
       currentVideo: {
-        url: `https://cdn.145group.com/${video.link}`,
+        url: `${this.configService.get('BASE_URL')}/${video.link}`,
         key: key + 1,
       },
     };
