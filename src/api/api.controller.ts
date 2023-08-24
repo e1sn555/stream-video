@@ -37,7 +37,7 @@ export class ApiController {
   }
 
   @Get('branches')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   async getBranches() {
     const branches = await this.branchService.getAllBranches();
     return {
