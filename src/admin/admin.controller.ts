@@ -158,6 +158,8 @@ export class AdminController {
       return branch;
     });
 
+    console.log(branches);
+
     const today = new Date().toISOString().split('T')[0];
     return {
       video,
