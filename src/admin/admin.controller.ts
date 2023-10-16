@@ -64,7 +64,6 @@ export class AdminController {
   @UseGuards(AuthGuard)
   async branchList() {
     const branches = await this.adminService.getBranches();
-    console.log(branches);
     return {
       branches,
     };
@@ -135,6 +134,23 @@ export class AdminController {
     const videos = await this.adminService.getVideos();
     return {
       videos,
+    };
+  }
+
+  @Get('/videos/edit/:id')
+  @Render('videos/edit')
+  @UseGuards(AuthGuard)
+  async videoEdit(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Res() res: Response,
+  ) {
+    const video = await this.adminService.getVideo(id);
+    if (!video) {
+      return res.render('404');
+    }
+    video._branches = video.branches.map((branch) => branch.id);
+    return {
+      video,
     };
   }
 

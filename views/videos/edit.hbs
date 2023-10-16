@@ -1,0 +1,67 @@
+<ul class='breadcrumb'>
+  <li class='breadcrumb-item'><a href='/'>Ana səhifə</a></li>
+  <li class='breadcrumb-item'><a href='/admin/videos'>Videolar</a></li>
+  <li class='breadcrumb-item'><span>Yeni Video</span></li>
+</ul>
+<div class='row mt-4'>
+  <div class='col-md-10 mx-auto'>
+    <h4>
+      Videoya düzəliş et
+    </h4>
+  </div>
+  <div class='col-md-10 mt-4 mx-auto'>
+    <form action='/admin/videos' method='post' enctype='multipart/form-data'>
+      <div class='form-group'>
+        <label for='video'>Fayl</label>
+        <video width='160' height='100' controls>
+          <source
+            src='https://newcdn.145group.com/{{video.link}}'
+            type='video/mp4'
+          />
+        </video>
+      </div>
+      <div class='form-group'>
+        <label for='startDate'>Başlama tarixi</label>
+        <input
+          type='date'
+          name='startDate'
+          id='startDate'
+          class='form-control'
+          required
+          min='{{today}}'
+          value='{{video.startDate}}'
+        />
+      </div>
+      <div class='form-group'>
+        <label for='endDate'>Bitmə tarixi</label>
+        <input
+          type='date'
+          name='endDate'
+          id='endDate'
+          class='form-control'
+          required
+          disabled
+          value='{{video.endDate}}'
+        />
+      </div>
+      <div class='form-group'>
+        <label for='branches'>Filiallar</label>
+        <select
+          multiple
+          name='branches[]'
+          id='branches'
+          class='form-control'
+          required
+        >
+          {{#each branches}}
+            <option value='{{id}}' selected='{{ id.includes(video.branches) }}'>{{name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class='form-group d-flex'>
+        <button class='btn btn-success'>Yadda saxla</button>
+        <a href='/admin/videos' class='btn btn-secondary ml-2'>Geri</a>
+      </div>
+    </form>
+  </div>
+</div>
