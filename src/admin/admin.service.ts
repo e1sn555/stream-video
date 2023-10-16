@@ -96,10 +96,16 @@ export class AdminService {
     return await this.videoService.findVideoById(id);
   }
 
-  async updateVideo(id: string, startDate: string, endDate: string) {
+  async updateVideo(
+    id: string,
+    startDate: string,
+    endDate: string,
+    branches: BranchEntity[],
+  ) {
     return await this.videoService.updateVideo(id, {
       startDate,
       endDate,
+      branches,
     });
   }
 }

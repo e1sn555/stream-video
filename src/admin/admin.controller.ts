@@ -158,8 +158,6 @@ export class AdminController {
       return branch;
     });
 
-    console.log(branches);
-
     const today = new Date().toISOString().split('T')[0];
     return {
       video,
@@ -178,7 +176,13 @@ export class AdminController {
     @Res() res: Response,
   ) {
     console.log('bura xoda dusdu');
-    const result = this.adminService.updateVideo(id, startDate, endDate);
+    const branchEntities = await this.adminService.getBranchesByIds(branches);
+    const result = this.adminService.updateVideo(
+      id,
+      startDate,
+      endDate,
+      branchEntities,
+    );
     if (!result) {
       return res.redirect('/admin/videos/edit/' + id);
     }
