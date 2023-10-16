@@ -65,8 +65,9 @@ export class AdminController {
   async branchList() {
     const branches = (await this.adminService.getBranches()).map((branch) => {
       branch._videoViewCount = 0;
-      branch.videos.forEach((video) => {
+      branch.videos.map((video) => {
         branch._videoViewCount += video.views[branch.id]?.count || 0;
+        return video;
       });
       return branch;
     });
