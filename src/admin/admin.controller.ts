@@ -167,6 +167,7 @@ export class AdminController {
     @Body('branches') branches: Array<string>,
     @Res() res: Response,
   ) {
+    console.log('bura xoda dusdu');
     const result = this.adminService.updateVideo(id, startDate, endDate);
     if (!result) {
       return res.redirect('/admin/videos/edit/' + id);
