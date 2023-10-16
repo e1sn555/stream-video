@@ -67,6 +67,11 @@ export class AdminController {
       branch._videoViewCount = 0;
       branch.videos.map((video) => {
         branch._videoViewCount += video.views[branch.id]?.count || 0;
+        console.log(
+          video,
+          branch._videoViewCount,
+          video.views[branch.id]?.count,
+        );
         return video;
       });
       return branch;
