@@ -149,7 +149,6 @@ export class AdminController {
       return res.render('404');
     }
     video._branches = video.branches.map((branch) => branch.id);
-    console.log(video);
     return {
       video,
     };

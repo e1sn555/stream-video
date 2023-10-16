@@ -54,7 +54,11 @@
           required
         >
           {{#each branches}}
-            <option value='{{id}}' {{#if video._branches.includes(id) }} selected {{/if}}>{{name}}</option>
+                <option value='{{id}}'
+                {{if id includes video._branches}}
+                  selected
+                {{/if}}
+            >{{name}}</option>
           {{/each}}
         </select>
       </div>
