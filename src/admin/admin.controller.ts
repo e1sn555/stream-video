@@ -68,6 +68,7 @@ export class AdminController {
 
       const videos = this.adminService.getVideoByBranchId(b.id).then((v) => {
         v.map((video) => {
+          console.log(video);
           b._videoViewCount + video.views[b.id].count || 0;
         });
       });
