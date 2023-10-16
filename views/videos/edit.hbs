@@ -30,7 +30,7 @@
           id='startDate'
           class='form-control'
           required
-          min='{{today}}'
+          min='{{video.startDate}}'
           value='{{video.startDate}}'
         />
       </div>
@@ -43,6 +43,7 @@
           class='form-control'
           required
           value='{{video.endDate}}'
+          min='{{video.startDate}}'
         />
       </div>
       <div class='form-group'>
