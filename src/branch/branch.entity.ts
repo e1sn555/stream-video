@@ -15,6 +15,8 @@ export class BranchEntity {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
+  _selected?: boolean;
+
   @Column({
     type: 'varchar',
     length: 255,

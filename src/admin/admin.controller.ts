@@ -148,8 +148,16 @@ export class AdminController {
     if (!video) {
       return res.render('404');
     }
-    video._branches = video.branches.map((branch) => branch.id);
-    const branches = await this.adminService.getBranches();
+    const branches = (await this.adminService.getBranches()).map((branch) => {
+      branch._selected = false;
+      video.branches.map((videoBranch) => {
+        if (branch.id === videoBranch.id) {
+          branch._selected = true;
+        }
+      });
+      return branch;
+    });
+
     const today = new Date().toISOString().split('T')[0];
     return {
       video,
