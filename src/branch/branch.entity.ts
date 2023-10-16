@@ -17,6 +17,8 @@ export class BranchEntity {
 
   _selected?: boolean;
 
+  _videoViewCount?: number;
+
   @Column({
     type: 'varchar',
     length: 255,

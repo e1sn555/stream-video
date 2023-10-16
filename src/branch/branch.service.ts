@@ -15,6 +15,7 @@ export class BranchService {
       order: {
         createdAt: 'DESC',
       },
+      relations: ['videos'],
     });
   }
 
