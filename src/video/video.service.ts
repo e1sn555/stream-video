@@ -24,12 +24,7 @@ export class VideoService {
   }
 
   async updateVideo(id: string, video: DeepPartial<VideoEntity>) {
-    return await this.videoRepository.update(
-      {
-        id,
-      },
-      { ...video },
-    );
+    return await this.videoRepository.save({ id, ...video });
   }
 
   async deleteVideo(id: string): Promise<DeleteResult> {
