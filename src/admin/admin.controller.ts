@@ -176,6 +176,7 @@ export class AdminController {
     @Res() res: Response,
   ) {
     console.log('bura xoda dusdu');
+    console.log(branches);
     const branchEntities = await this.adminService.getBranchesByIds(branches);
     const result = this.adminService.updateVideo(
       id,
