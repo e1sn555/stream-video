@@ -55,11 +55,11 @@ export class ApiController {
   @UseGuards(JwtAuthGuard)
   async getVideo(@Query('key') skip: string, @Req() req: any) {
     const key = parseInt(skip) - 1;
-    console.log(key);
     if (isNaN(key) || key < 0 || key === undefined) {
       throw new BadRequestException();
     }
     const branchId = req.user.branchId;
+    console.log(branchId);
     const video = await this.videoService.findVideoByBranchId(branchId, key);
     if (!video) {
       return {

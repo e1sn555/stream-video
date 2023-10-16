@@ -56,7 +56,9 @@
           required
         >
           {{#each branches}}
-            <option value='{{id}}' selected>{{name}}</option>
+            <option value='{{id}}' 
+              {{#if }}selected{{/if}}
+            >{{name}}</option>
           {{/each}}
         </select>
       </div>
