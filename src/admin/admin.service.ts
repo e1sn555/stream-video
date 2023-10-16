@@ -108,4 +108,8 @@ export class AdminService {
       branches,
     });
   }
+
+  async getVideoByBranchId(branchId: string) {
+    return await this.videoService.getVideosByBranchId(branchId);
+  }
 }

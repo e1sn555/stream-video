@@ -81,4 +81,16 @@ export class VideoService {
     console.log(views);
     await this.updateVideo(id, { views });
   }
+
+  async getVideosByBranchId(branchId: string) {
+    return await this.videoRepository.find({
+      where: [
+        {
+          branches: {
+            id: branchId,
+          },
+        },
+      ],
+    });
+  }
 }
