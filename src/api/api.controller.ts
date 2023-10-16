@@ -59,7 +59,6 @@ export class ApiController {
       throw new BadRequestException();
     }
     const branchId = req.user.branchId;
-    console.log(branchId);
     const video = await this.videoService.findVideoByBranchId(branchId, key);
     if (!video) {
       return {
@@ -70,6 +69,7 @@ export class ApiController {
     const videoCount = await this.videoService.getVideoCountByBranchId(
       branchId,
     );
+    console.log(video);
     return {
       success: true,
       total: videoCount,
