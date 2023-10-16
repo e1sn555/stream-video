@@ -74,7 +74,7 @@ export class ApiController {
       success: true,
       total: videoCount,
       currentVideo: {
-        url: `${this.configService.get('BASE_URL')}/${video.link}`,
+        url: `https://newcdn.145group.com/${video.link}`,
         key: key + 1,
       },
     };

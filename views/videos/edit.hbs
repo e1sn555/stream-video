@@ -13,12 +13,14 @@
     <form action='/admin/videos' method='post' enctype='multipart/form-data'>
       <div class='form-group'>
         <label for='video'>Fayl</label>
-        <video width='160' height='100' controls>
-          <source
-            src='https://newcdn.145group.com/{{video.link}}'
-            type='video/mp4'
-          />
-        </video>
+        <div>
+          <video width='160' height='100' controls>
+            <source
+              src='https://newcdn.145group.com/{{video.link}}'
+              type='video/mp4'
+            />
+          </video>
+        </div>
       </div>
       <div class='form-group'>
         <label for='startDate'>Başlama tarixi</label>
