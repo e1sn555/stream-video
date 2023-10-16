@@ -95,4 +95,11 @@ export class AdminService {
   async getVideo(id: string) {
     return await this.videoService.findVideoById(id);
   }
+
+  async updateVideo(id: string, startDate: string, endDate: string) {
+    return await this.videoService.updateVideo(id, {
+      startDate,
+      endDate,
+    });
+  }
 }

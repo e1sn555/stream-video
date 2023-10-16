@@ -158,6 +158,22 @@ export class AdminController {
     };
   }
 
+  @Post('/videos/edit/:id')
+  @UseGuards(AuthGuard)
+  async updateVideo(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body('endDate') endDate: string,
+    @Body('startDate') startDate: string,
+    @Body('branches') branches: Array<string>,
+    @Res() res: Response,
+  ) {
+    const result = this.adminService.updateVideo(id, startDate, endDate);
+    if (!result) {
+      return res.redirect('/admin/videos/edit/' + id);
+    }
+    return res.redirect('/admin/videos');
+  }
+
   @Delete('/videos/:id')
   @UseGuards(AuthGuard)
   async deleteVideo(@Param('id', new ParseUUIDPipe()) id: string) {
