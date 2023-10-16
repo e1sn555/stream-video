@@ -4,6 +4,7 @@ import { UserService } from 'src/user/user.service';
 import { VideoService } from 'src/video/video.service';
 import * as bcrypt from 'bcrypt';
 import { BranchEntity } from 'src/branch/branch.entity';
+import { VideoEntity } from 'src/video/video.entity';
 
 @Injectable()
 export class AdminService {
@@ -109,7 +110,7 @@ export class AdminService {
     });
   }
 
-  async getVideoByBranchId(branchId: string) {
+  async getVideoByBranchId(branchId: string): Promise<VideoEntity[]> {
     return await this.videoService.getVideosByBranchId(branchId);
   }
 }
