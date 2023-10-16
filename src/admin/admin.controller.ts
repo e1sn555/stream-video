@@ -149,8 +149,12 @@ export class AdminController {
       return res.render('404');
     }
     video._branches = video.branches.map((branch) => branch.id);
+    const branches = await this.adminService.getBranches();
+    const today = new Date().toISOString().split('T')[0];
     return {
       video,
+      branches,
+      today,
     };
   }
 
