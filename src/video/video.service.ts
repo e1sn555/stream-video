@@ -23,11 +23,13 @@ export class VideoService {
     return await this.videoRepository.save(video);
   }
 
-  async updateVideo(
-    id: string,
-    video: DeepPartial<VideoEntity>,
-  ): Promise<VideoEntity> {
-    return await this.videoRepository.save({ id, ...video });
+  async updateVideo(id: string, video: DeepPartial<VideoEntity>) {
+    return await this.videoRepository.update(
+      {
+        id,
+      },
+      { ...video },
+    );
   }
 
   async deleteVideo(id: string): Promise<DeleteResult> {
