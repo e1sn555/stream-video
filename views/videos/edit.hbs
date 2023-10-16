@@ -54,7 +54,7 @@
           required
         >
           {{#each branches}}
-            <option value='{{id}}' selected='{{ id.includes(video.branches) }}'>{{name}}</option>
+            <option value='{{id}}' selected='{{ video.branches.includes(id) }}'>{{name}}</option>
           {{/each}}
         </select>
       </div>
