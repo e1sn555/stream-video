@@ -29,7 +29,7 @@ export class LogService {
         today: today.toISOString(),
       })
       .orderBy('log.createdAt', 'DESC')
-      .groupBy('log.createdAt')
+      .groupBy('log.createdAt, log.id')
       .getMany();
     console.log(data);
   }
