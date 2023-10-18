@@ -34,10 +34,10 @@ export class AdminController {
   }
 
   @Get('/dashboard')
+  @Render('dashboard')
   @UseGuards(AuthGuard)
   async dashboard(@Res() res: Response) {
     const data = await this.adminService.dashboard();
-    console.log(data);
     return data;
   }
 
