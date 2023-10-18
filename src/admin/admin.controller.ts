@@ -38,6 +38,7 @@ export class AdminController {
   async dashboard(@Res() res: Response) {
     const data = await this.adminService.dashboard();
     console.log(data);
+    return data;
   }
 
   @Get('/login')
