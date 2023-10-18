@@ -131,18 +131,15 @@ export class AdminController {
   @Render('videos/list')
   @UseGuards(AuthGuard)
   async videoList() {
-    // const videos = (await this.adminService.getVideos()).map((v) => {
-    //   v._viewCount = 0;
+    const videos = (await this.adminService.getVideos()).map((v) => {
+      v._viewCount = 0;
 
-    //   Object.keys(v.views).forEach((key) => {
-    //     v._viewCount += v.views[key].count;
-    //   });
+      Object.keys(v.views).forEach((key) => {
+        v._viewCount += v.views[key].count;
+      });
 
-    //   return v;
-    // });
-    const videos = await this.adminService.getVideos();
-
-    console.log(videos);
+      return v;
+    });
     return {
       videos,
     };
