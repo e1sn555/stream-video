@@ -30,7 +30,7 @@ export class BranchEntity {
   })
   address?: string;
 
-  @ManyToMany(() => VideoEntity, (video) => video.branches)
+  @ManyToMany(() => VideoEntity)
   @JoinTable()
   videos: VideoEntity[];
 
