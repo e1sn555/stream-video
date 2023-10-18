@@ -15,6 +15,12 @@ export class VideoEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
+  title: string;
+
   _viewCount?: number;
 
   @Column({

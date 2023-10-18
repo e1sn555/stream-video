@@ -84,12 +84,14 @@ export class AdminService {
     branches: BranchEntity[],
     startDate: string,
     endDate: string,
+    title: string,
   ) {
     return await this.videoService.createVideo({
       link,
       branches,
       startDate,
       endDate,
+      title,
     });
   }
 
@@ -102,11 +104,13 @@ export class AdminService {
     startDate: string,
     endDate: string,
     branches: BranchEntity[],
+    title: string,
   ) {
     return await this.videoService.updateVideo(id, {
       startDate,
       endDate,
       branches,
+      title,
     });
   }
 

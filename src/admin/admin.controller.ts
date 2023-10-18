@@ -189,6 +189,7 @@ export class AdminController {
     @Body('endDate') endDate: string,
     @Body('startDate') startDate: string,
     @Body('branches') branches: Array<string>,
+    @Body('title') title: string,
     @Res() res: Response,
   ) {
     const branchEntities = await this.adminService.getBranchesByIds(branches);
@@ -197,6 +198,7 @@ export class AdminController {
       startDate,
       endDate,
       branchEntities,
+      title,
     );
     if (!result) {
       return res.redirect('/admin/videos/edit/' + id);
@@ -242,6 +244,7 @@ export class AdminController {
     @Body('endDate') endDate: string,
     @Body('startDate') startDate: string,
     @Body('branches') branches: Array<string>,
+    @Body('title') title: string,
     @Res() res: Response,
   ) {
     const splittedExt = video.originalname.split('.');
@@ -258,6 +261,7 @@ export class AdminController {
       branchEntities,
       startDate,
       endDate,
+      title,
     );
     return res.redirect('/admin/videos');
   }
