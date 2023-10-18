@@ -63,11 +63,7 @@ export class AdminController {
   @Render('branches/list')
   @UseGuards(AuthGuard)
   async branchList() {
-    const branches = (await this.adminService.getBranches()).map((b) => {
-      b._videoViewCount = 0;
-
-      return b;
-    });
+    const branches = await this.adminService.getBranches();
     return {
       branches,
     };
