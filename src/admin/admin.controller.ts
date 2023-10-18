@@ -30,7 +30,7 @@ export class AdminController {
   @Get('/')
   @UseGuards(AuthGuard)
   async index(@Res() res: Response) {
-    res.redirect('/admin/branches');
+    res.redirect('/admin/dashboard');
   }
 
   @Get('/dashboard')
