@@ -9,6 +9,7 @@ import { ApiModule } from './api/api.module';
 import { AuthModule } from './auth/auth.module';
 import { SessionModule } from './session/session.module';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { LogModule } from './log/log.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     ApiModule,
     AuthModule,
     SessionModule,
+    LogModule,
   ],
 })
 export class AppModule {}
