@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './jwt.strategy';
 import { ApiService } from './api.service';
+import { LogModule } from 'src/log/log.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ApiService } from './api.service';
         secret: configService.get<string>('JWT_SECRET'),
       }),
     }),
+    LogModule,
   ],
   controllers: [ApiController],
   providers: [JwtStrategy, ApiService],

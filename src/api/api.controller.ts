@@ -15,6 +15,7 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 import { ApiService } from './api.service';
 import { LoginDto } from './login.dto';
 import { ConfigService } from '@nestjs/config';
+import { LogService } from 'src/log/log.service';
 
 @Controller('api')
 @ApiTags('api')
@@ -24,6 +25,7 @@ export class ApiController {
     private readonly branchService: BranchService,
     private readonly apiService: ApiService,
     private readonly configService: ConfigService,
+    private readonly logService: LogService,
   ) {}
 
   @Post('login')
@@ -69,7 +71,11 @@ export class ApiController {
     const videoCount = await this.videoService.getVideoCountByBranchId(
       branchId,
     );
-    console.log(video);
+    await this.logService.addToLogs({
+      videoId: video.id,
+      branchId: branchId,
+      createdAt: new Date(),
+    });
     return {
       success: true,
       total: videoCount,
