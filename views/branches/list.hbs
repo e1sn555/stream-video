@@ -27,10 +27,17 @@
         {{#each branches}}
           <tr>
             <td>
-              <img
-                src='/images/{{banner}}'
-                style='width: 100px; height: 50px; object-fit: cover'
-              />
+              {{#if banner}}
+                <img
+                  src='/images/{{banner}}'
+                  style='width: 100px; height: 50px; object-fit: cover'
+                />
+              {{else}}
+                <img
+                  src='/no-image.jpg'
+                  style='width: 100px; height: 50px; object-fit: cover'
+                />
+              {{/if}}
             </td>
             <td>{{name}}</td>
             <td>{{address}}</td>
