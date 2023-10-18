@@ -27,92 +27,47 @@
     <div class='col-sm-12'>
       <div class='element-box'><div class='table-responsive'><table
             class='table table-lightborder'
-          ><thead><tr><th>Customer</th><th>Products</th><th
-                  class='text-center'
-                >Status</th><th class='text-right'>Total</th></tr></thead><tbody
-            ><tr><td class='nowrap'>John Mayers</td><td><div
-                    class='cell-image-list'
-                  ><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio9.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio2.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio12.jpg)'
-                    ></div><div class='cell-img-more'>+ 5 more</div></div></td><td
-                  class='text-center'
-                ><div
-                    class='status-pill green'
-                    data-title='Complete'
-                    data-toggle='tooltip'
-                    data-original-title=''
-                    title=''
-                  ></div></td><td class='text-right'>$354</td></tr><tr><td
-                  class='nowrap'
-                >Kelly Brans</td><td><div class='cell-image-list'><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio14.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio8.jpg)'
-                    ></div></div></td><td class='text-center'><div
-                    class='status-pill red'
-                    data-title='Cancelled'
-                    data-toggle='tooltip'
-                    data-original-title=''
-                    title=''
-                  ></div></td><td class='text-right'>$94</td></tr><tr><td
-                  class='nowrap'
-                >Tim Howard</td><td><div class='cell-image-list'><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio16.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio14.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio5.jpg)'
-                    ></div></div></td><td class='text-center'><div
-                    class='status-pill green'
-                    data-title='Complete'
-                    data-toggle='tooltip'
-                    data-original-title=''
-                    title=''
-                  ></div></td><td class='text-right'>$156</td></tr><tr><td
-                  class='nowrap'
-                >Joe Trulli</td><td><div class='cell-image-list'><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio1.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio5.jpg)'
-                    ></div><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio6.jpg)'
-                    ></div><div class='cell-img-more'>+ 2 more</div></div></td><td
-                  class='text-center'
-                ><div
-                    class='status-pill yellow'
-                    data-title='Pending'
-                    data-toggle='tooltip'
-                    data-original-title=''
-                    title=''
-                  ></div></td><td class='text-right'>$1,120</td></tr><tr><td
-                  class='nowrap'
-                >Jerry Lingard</td><td><div class='cell-image-list'><div
-                      class='cell-img'
-                      style='background-image: url(img/portfolio9.jpg)'
-                    ></div></div></td><td class='text-center'><div
-                    class='status-pill green'
-                    data-title='Complete'
-                    data-toggle='tooltip'
-                    data-original-title=''
-                    title=''
-                  ></div></td><td
-                  class='text-right'
-                >$856</td></tr></tbody></table></div></div>
+          ><thead>
+              <tr>
+                <th>Video</th>
+                <th>Baxış sayı</th>
+                <th>Filiallar</th>
+                <th>Başlama tarixi</th>
+                <th>Bitmə tarixi</th>
+                <th>Yaranma tarixi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each lastFiveVideos}}
+                <tr>
+                  <td>
+                    <video width='160' height='100' controls>
+                      <source
+                        src='https://newcdn.145group.com/{{link}}'
+                        type='video/mp4'
+                      />
+                    </video>
+                  </td>
+                  <td>{{_viewCount}}</td>
+                  <td>
+                    {{#each branches}}
+                      <span class='badge badge-primary'>{{name}}</span>
+                    {{/each}}
+                  </td>
+                  <td>{{startDate}}</td>
+                  <td>{{endDate}}</td>
+                  <td>{{_createdAt}}</td>
+                </tr>
+              {{/each}}
+              {{#unless lastFiveVideos}}
+                <tr>
+                  <td colspan='5' class='text-center'>Aktiv Video tapılmadı</td>
+                </tr>
+              {{/unless}}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

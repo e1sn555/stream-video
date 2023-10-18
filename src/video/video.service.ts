@@ -1,7 +1,13 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { VideoEntity } from './video.entity';
-import { Repository, DeepPartial, DeleteResult } from 'typeorm';
+import {
+  Repository,
+  DeepPartial,
+  DeleteResult,
+  LessThan,
+  MoreThan,
+} from 'typeorm';
 
 @Injectable()
 export class VideoService {
@@ -45,6 +51,17 @@ export class VideoService {
     });
 
     return totalArr.reduce((a, b) => a + b, 0);
+  }
+
+  async lastFiveActiveVideos(): Promise<VideoEntity[]> {
+    return await this.videoRepository
+      .createQueryBuilder('video')
+      .leftJoinAndSelect('video.branches', 'branch')
+      .andWhere('video.startDate <= :today', { today: new Date() })
+      .andWhere('video.endDate >= :today', { today: new Date() })
+      .orderBy('video.createdAt', 'DESC')
+      .take(5)
+      .getMany();
   }
 
   async findVideoById(id: string): Promise<VideoEntity> {

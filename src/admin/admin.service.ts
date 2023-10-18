@@ -118,11 +118,13 @@ export class AdminService {
     const videoCount = await this.videoService.totalVideoCount();
     const viewCount = await this.videoService.totalViewCount();
     const branchCount = await this.branchService.totalBranchCount();
+    const lastFiveVideos = await this.videoService.lastFiveActiveVideos();
 
     return {
       videoCount,
       viewCount,
       branchCount,
+      lastFiveVideos,
     };
   }
 }
