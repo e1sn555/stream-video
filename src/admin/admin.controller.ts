@@ -66,13 +66,6 @@ export class AdminController {
     const branches = (await this.adminService.getBranches()).map((b) => {
       b._videoViewCount = 0;
 
-      const videos = this.adminService.getVideoByBranchId(b.id).then((v) => {
-        v.map((video) => {
-          console.log(video);
-          b._videoViewCount + video.views[b.id].count || 0;
-        });
-      });
-
       return b;
     });
     return {
@@ -142,15 +135,16 @@ export class AdminController {
   @Render('videos/list')
   @UseGuards(AuthGuard)
   async videoList() {
-    const videos = (await this.adminService.getVideos()).map((v) => {
-      v._viewCount = 0;
+    // const videos = (await this.adminService.getVideos()).map((v) => {
+    //   v._viewCount = 0;
 
-      Object.keys(v.views).forEach((key) => {
-        v._viewCount += v.views[key].count;
-      });
+    //   Object.keys(v.views).forEach((key) => {
+    //     v._viewCount += v.views[key].count;
+    //   });
 
-      return v;
-    });
+    //   return v;
+    // });
+    const videos = await this.adminService.getVideos();
     return {
       videos,
     };
