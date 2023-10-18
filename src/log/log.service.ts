@@ -11,6 +11,7 @@ export class LogService {
   ) {}
 
   async addToLogs(log: DeepPartial<LogEntity>) {
+    console.log(log);
     await this.logRepository.save(log);
   }
 
