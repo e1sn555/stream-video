@@ -62,7 +62,7 @@ async function bootstrap() {
   );
 
   app.use((req: Request, res: Response, next: NextFunction) => {
-    if (req.url !== '/admin/login') {
+    if (!req.url.includes('login')) {
       res.locals.layout = 'index';
     }
     next();
