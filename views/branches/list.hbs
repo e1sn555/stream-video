@@ -14,6 +14,9 @@
     <table class='table'>
       <thead>
         <tr>
+          <th>
+            Banner
+          </th>
           <th>Ad</th>
           <th>Ünvan</th>
           <th>Yaranma tarixi</th>
@@ -23,6 +26,9 @@
       <tbody>
         {{#each branches}}
           <tr>
+            <td>
+              <img src='/{{banner}}' style='200px' height='100px' />
+            </td>
             <td>{{name}}</td>
             <td>{{address}}</td>
             <td>{{_createdAt}}</td>

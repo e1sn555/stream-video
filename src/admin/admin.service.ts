@@ -34,12 +34,18 @@ export class AdminService {
     await this.branchService.deleteBranch(id);
   }
 
-  async createBranch(name: string, address: string, password: string) {
+  async createBranch(
+    name: string,
+    address: string,
+    password: string,
+    fileName?: string | null,
+  ) {
     const encryptedPassword = await bcrypt.hash(password, 10);
     return await this.branchService.createBranch({
       name,
       address,
       password: encryptedPassword,
+      banner: fileName,
     });
   }
 

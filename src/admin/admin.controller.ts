@@ -103,8 +103,7 @@ export class AdminController {
       ws.write(banner.buffer);
       ws.close();
     }
-    console.log(name, address, password, banner);
-    await this.adminService.createBranch(name, address, password);
+    await this.adminService.createBranch(name, address, password, fileName);
     return res.redirect('/admin/branches');
   }
 
