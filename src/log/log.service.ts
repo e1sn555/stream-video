@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DeepPartial, LessThanOrEqual, Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import { LogEntity } from './log.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -22,11 +22,12 @@ export class LogService {
     todayMinus30days.setDate(todayMinus30days.getDate() - 30);
     todayMinus30days.setHours(0, 0, 0);
     console.log(today, todayMinus30days);
-    const data = await this.logRepository.find({
-      where: {
-        createdAt: LessThanOrEqual(today),
-      },
-    });
+    const data = await this.logRepository
+      .createQueryBuilder('log')
+      .where(`DATE_TRUNC('day', "created_at") = :date`, {
+        date: '2023-11-11',
+      })
+      .getMany();
     console.log(data);
   }
 }
