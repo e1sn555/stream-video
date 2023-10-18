@@ -25,45 +25,49 @@
       </a>
     </div>
     <div class='col-sm-12'>
-      <div class='element-box'><div class='table-responsive'><table
-            class='table table-lightborder'
-          ><thead>
-              <tr>
-                <th>Video</th>
-                <th>Filiallar</th>
-                <th>Başlama tarixi</th>
-                <th>Bitmə tarixi</th>
-                <th>Yaranma tarixi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each lastFiveVideos}}
+      <div class='element-wrapper'>
+        <h6 class='element-header'>Aktiv videolar</h6>
+        <div class='element-box'>
+          <div class='table-responsive'>
+            <table class='table table-lightborder'>
+              <thead>
                 <tr>
-                  <td>
-                    <video width='160' height='100' controls>
-                      <source
-                        src='https://newcdn.145group.com/{{link}}'
-                        type='video/mp4'
-                      />
-                    </video>
-                  </td>
-                  <td>
-                    {{#each branches}}
-                      <span class='badge badge-primary'>{{name}}</span>
-                    {{/each}}
-                  </td>
-                  <td>{{startDate}}</td>
-                  <td>{{endDate}}</td>
-                  <td>{{_createdAt}}</td>
+                  <th>Video</th>
+                  <th>Filiallar</th>
+                  <th>Başlama tarixi</th>
+                  <th>Bitmə tarixi</th>
+                  <th>Yaranma tarixi</th>
                 </tr>
-              {{/each}}
-              {{#unless lastFiveVideos}}
-                <tr>
-                  <td colspan='5' class='text-center'>Aktiv Video tapılmadı</td>
-                </tr>
-              {{/unless}}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {{#each lastFiveVideos}}
+                  <tr>
+                    <td>
+                      <video width='160' height='100' controls>
+                        <source
+                          src='https://newcdn.145group.com/{{link}}'
+                          type='video/mp4'
+                        />
+                      </video>
+                    </td>
+                    <td>
+                      {{#each branches}}
+                        <span class='badge badge-primary'>{{name}}</span>
+                      {{/each}}
+                    </td>
+                    <td>{{startDate}}</td>
+                    <td>{{endDate}}</td>
+                    <td>{{_createdAt}}</td>
+                  </tr>
+                {{/each}}
+                {{#unless lastFiveVideos}}
+                  <tr>
+                    <td colspan='5' class='text-center'>Aktiv Video tapılmadı</td>
+                  </tr>
+                {{/unless}}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
