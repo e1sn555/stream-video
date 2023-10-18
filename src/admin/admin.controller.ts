@@ -145,6 +145,8 @@ export class AdminController {
     //   return v;
     // });
     const videos = await this.adminService.getVideos();
+
+    console.log(videos);
     return {
       videos,
     };
