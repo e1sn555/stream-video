@@ -84,6 +84,7 @@ export class AdminController {
 
   @Post('/branches')
   @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('banner'))
   async branchCreatePost(
     @Body('name') name: string,
     @Body('address') address: string,
@@ -91,9 +92,13 @@ export class AdminController {
     @Res() res: Response,
     @UploadedFile() banner: Express.Multer.File,
   ) {
+    let fileName = null;
     if (banner) {
+      const splittedExt = banner.originalname.split('.');
+      const ext = splittedExt[splittedExt.length - 1];
+      fileName = `${uuidv4()}.${ext}`;
       const ws = createWriteStream(
-        join(__dirname, '..', '..', 'public', 'images', banner.filename),
+        join(__dirname, '..', '..', 'public', 'images', fileName),
       );
       ws.write(banner.buffer);
       ws.close();
