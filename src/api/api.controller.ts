@@ -74,7 +74,6 @@ export class ApiController {
     await this.logService.addToLogs({
       videoId: video.id,
       branchId: branchId,
-      createdAt: new Date(),
     });
     return {
       success: true,
