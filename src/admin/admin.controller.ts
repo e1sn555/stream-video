@@ -89,7 +89,15 @@ export class AdminController {
     @Body('address') address: string,
     @Body('password') password: string,
     @Res() res: Response,
+    @UploadedFile() banner: Express.Multer.File,
   ) {
+    if (banner) {
+      const ws = createWriteStream(
+        join(__dirname, '..', '..', 'public', 'images', banner.filename),
+      );
+      ws.write(banner.buffer);
+      ws.close();
+    }
     await this.adminService.createBranch(name, address, password);
     return res.redirect('/admin/branches');
   }
