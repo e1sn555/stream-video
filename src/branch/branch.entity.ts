@@ -20,6 +20,13 @@ export class BranchEntity {
   @Column({
     type: 'varchar',
     length: 255,
+    nullable: true,
+  })
+  banner?: string;
+
+  @Column({
+    type: 'varchar',
+    length: 255,
   })
   name: string;
 
