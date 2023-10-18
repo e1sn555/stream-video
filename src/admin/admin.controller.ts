@@ -256,7 +256,10 @@ export class AdminController {
 
   @Get('logout')
   @UseGuards(AuthGuard)
-  async logout(@Res() res: Response, @Session() session: any) {}
+  async logout(@Res() res: Response, @Session() session: any) {
+    session.destroy();
+    return res.redirect('/admin/login');
+  }
 
   @Get('*')
   @Render('404')
