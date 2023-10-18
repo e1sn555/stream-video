@@ -16,7 +16,6 @@
         <tr>
           <th>Ad</th>
           <th>Ünvan</th>
-          <th>Video baxış sayı</th>
           <th>Yaranma tarixi</th>
           <th>Əməliyyatlar</th>
         </tr>
@@ -26,7 +25,6 @@
           <tr>
             <td>{{name}}</td>
             <td>{{address}}</td>
-            <td>{{_videoViewCount}}</td>
             <td>{{_createdAt}}</td>
             <td>
               <a
@@ -42,7 +40,7 @@
         {{/each}}
         {{#unless branches}}
           <tr>
-            <td colspan='5' class='text-center'>Filial tapılmadı</td>
+            <td colspan='4' class='text-center'>Filial tapılmadı</td>
           </tr>
         {{/unless}}
       </tbody>
