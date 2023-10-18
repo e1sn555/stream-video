@@ -31,6 +31,22 @@ export class VideoService {
     return await this.videoRepository.delete(id);
   }
 
+  async totalVideoCount(): Promise<number> {
+    return await this.videoRepository.count();
+  }
+
+  async totalViewCount(): Promise<number> {
+    const data = await this.videoRepository.find({
+      select: ['views'],
+    });
+
+    const totalArr = data.map((item) => {
+      return item.__viewCount;
+    });
+
+    return totalArr.reduce((a, b) => a + b, 0);
+  }
+
   async findVideoById(id: string): Promise<VideoEntity> {
     return await this.videoRepository.findOne({
       where: { id },

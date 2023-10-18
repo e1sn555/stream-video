@@ -23,6 +23,10 @@ export class BranchService {
     return await this.branchRepository.save(branch);
   }
 
+  async totalBranchCount(): Promise<number> {
+    return await this.branchRepository.count();
+  }
+
   async updateBranch(
     id: string,
     branch: DeepPartial<BranchEntity>,

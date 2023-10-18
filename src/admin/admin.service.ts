@@ -113,4 +113,12 @@ export class AdminService {
   async getVideoByBranchId(branchId: string): Promise<VideoEntity[]> {
     return await this.videoService.getVideosByBranchId(branchId);
   }
+
+  async dashboard() {
+    const videoCount = await this.videoService.totalVideoCount();
+    const viewCount = await this.videoService.totalViewCount();
+    const branchCount = await this.branchService.totalBranchCount();
+
+    console.log(videoCount, viewCount, branchCount);
+  }
 }

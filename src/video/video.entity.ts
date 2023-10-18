@@ -57,4 +57,12 @@ export class VideoEntity extends BaseEntity {
   get _createdAt(): string {
     return this.createdAt.toLocaleDateString();
   }
+
+  get __viewCount(): number {
+    let count = 0;
+    Object.keys(this.views).forEach((key) => {
+      count += this.views[key].count;
+    });
+    return count;
+  }
 }

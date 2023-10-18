@@ -33,6 +33,13 @@ export class AdminController {
     res.redirect('/admin/branches');
   }
 
+  @Get('/dashboard')
+  @UseGuards(AuthGuard)
+  async dashboard(@Res() res: Response) {
+    const data = await this.adminService.dashboard();
+    console.log(data);
+  }
+
   @Get('/login')
   @Render('login')
   @UseGuards(GuestGuard)
