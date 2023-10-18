@@ -58,6 +58,7 @@ export class AdminService {
     name: string,
     address: string,
     password: string,
+    fileName?: string | null,
   ) {
     const branch = await this.branchService.findBranchById(id);
     if (!branch) {
@@ -70,6 +71,7 @@ export class AdminService {
       name,
       address,
       password: encryptedPassword,
+      banner: fileName ? fileName : branch.banner,
     });
   }
 

@@ -125,14 +125,33 @@ export class AdminController {
 
   @Post('/branches/edit/:id')
   @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('banner'))
   async updateBranch(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Res() res: Response,
     @Body('name') name: string,
     @Body('address') address: string,
     @Body('password') password: string,
+    @UploadedFile() banner: Express.Multer.File,
   ) {
-    const result = this.adminService.updateBranch(id, name, address, password);
+    let fileName = null;
+    if (banner) {
+      const splittedExt = banner.originalname.split('.');
+      const ext = splittedExt[splittedExt.length - 1];
+      fileName = `${uuidv4()}.${ext}`;
+      const ws = createWriteStream(
+        join(__dirname, '..', '..', 'public', 'images', fileName),
+      );
+      ws.write(banner.buffer);
+      ws.close();
+    }
+    const result = this.adminService.updateBranch(
+      id,
+      name,
+      address,
+      password,
+      fileName,
+    );
     if (!result) {
       return res.redirect('/admin/branches/edit/' + id);
     }
