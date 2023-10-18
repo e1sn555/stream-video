@@ -13,6 +13,7 @@
     <table class='table'>
       <thead>
         <tr>
+          <th>Kampaniya adı</th>
           <th>Video</th>
           <th>Baxış sayı</th>
           <th>Filiallar</th>
@@ -25,6 +26,9 @@
       <tbody>
         {{#each videos}}
           <tr>
+            <td>
+              {{title}}
+            </td>
             <td>
               <video width='160' height='100' controls>
                 <source
