@@ -23,11 +23,11 @@ export class LogService {
     todayMinus30days.setHours(0, 0, 0);
     const data = await this.logRepository
       .createQueryBuilder('log')
-      .where('log.createdAt <= :today', { today: today.toISOString() })
-      //   .andWhere('log.createdAt > :todayMinus30days', {
-      //     todayMinus30days: todayMinus30days,
-      //   })
-      .getMany();
+      .where('log.createdAt <= :today', { today: today })
+      .andWhere('log.createdAt > :todayMinus30days', {
+        todayMinus30days: todayMinus30days,
+      })
+      .getSql();
     console.log(data);
   }
 }
