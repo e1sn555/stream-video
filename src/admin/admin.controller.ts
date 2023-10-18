@@ -22,15 +22,24 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { v4 as uuidv4 } from 'uuid';
 import { createWriteStream, unlink } from 'fs';
 import { join } from 'path';
+import { LogService } from 'src/log/log.service';
 
 @Controller('/admin')
 export class AdminController {
-  constructor(private readonly adminService: AdminService) {}
+  constructor(
+    private readonly adminService: AdminService,
+    private readonly logService: LogService,
+  ) {}
 
   @Get('/')
   @UseGuards(AuthGuard)
   async index(@Res() res: Response) {
     res.redirect('/admin/dashboard');
+  }
+
+  @Get('/test')
+  async logTes() {
+    await this.logService.getLogs();
   }
 
   @Get('/dashboard')

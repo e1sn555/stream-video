@@ -16,7 +16,21 @@ export class LogService {
 
   async getLogs() {
     const today = new Date();
-    const todayMinus30day = new Date();
-    todayMinus30day.setDate(todayMinus30day.getDate() - 30);
+    today.setHours(0, 0, 0);
+    const todayMinus30days = new Date();
+    todayMinus30days.setDate(todayMinus30days.getDate() - 30);
+    todayMinus30days.setHours(0, 0, 0);
+    const data = await this.logRepository
+      .createQueryBuilder('log')
+      .where('log.createdAt >= :todayMinus30days', {
+        todayMinus30days: todayMinus30days.toISOString(),
+      })
+      .where('log.createdAt <= :today', {
+        today: today.toISOString(),
+      })
+      .orderBy('log.createdAt', 'DESC')
+      .groupBy('log.createdAt')
+      .getMany();
+    console.log(data);
   }
 }

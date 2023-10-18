@@ -5,9 +5,10 @@ import { VideoModule } from 'src/video/video.module';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
 import { GuestGuard } from './guards/guest.guard';
+import { LogModule } from 'src/log/log.module';
 
 @Module({
-  imports: [BranchModule, UserModule, VideoModule],
+  imports: [BranchModule, UserModule, VideoModule, LogModule],
   controllers: [AdminController],
   providers: [AdminService, GuestGuard],
 })
