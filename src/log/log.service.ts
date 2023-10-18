@@ -27,7 +27,7 @@ export class LogService {
       .andWhere('log.createdAt > :todayMinus30days', {
         todayMinus30days: todayMinus30days,
       })
-      .getSql();
+      .getMany();
     console.log(data);
   }
 }
