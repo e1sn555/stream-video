@@ -21,7 +21,13 @@ export class LogService {
     const todayMinus30days = new Date();
     todayMinus30days.setDate(todayMinus30days.getDate() - 30);
     todayMinus30days.setHours(0, 0, 0);
-    const data = await this.logRepository.createQueryBuilder('log').getMany();
+    const data = await this.logRepository
+      .createQueryBuilder('log')
+      .where('log.createdAt <= :today', { today: today })
+      .andWhere('log.createdAt > :todayMinus30days', {
+        todayMinus30days: todayMinus30days,
+      })
+      .getMany();
     console.log(data);
   }
 }
