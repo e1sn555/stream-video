@@ -17,6 +17,8 @@ export class LogEntity extends BaseEntity {
   @Column()
   branchId: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    type: 'time with time zone',
+  })
   createdAt: Date;
 }
