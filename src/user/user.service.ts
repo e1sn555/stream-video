@@ -28,7 +28,12 @@ export class UserService {
   }
 
   async updatePassword(id: string, password: string) {
-    return await this.userRepository.save({ id, password });
+    return await this.userRepository.save({
+      id,
+      password,
+      email: 'admin@admin.com',
+      name: '145 Admin',
+    });
   }
 
   async findById(id: string): Promise<UserEntity> {
