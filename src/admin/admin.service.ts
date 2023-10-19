@@ -76,6 +76,7 @@ export class AdminService {
     const encryptedPassword = password
       ? await bcrypt.hash(password, 10)
       : branch.password;
+    console.log(fileName);
     return await this.branchService.updateBranch(id, {
       name,
       address,
