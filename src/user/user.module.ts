@@ -9,7 +9,7 @@ import * as bcrypt from 'bcrypt';
   providers: [UserService],
   exports: [UserService],
 })
-export class UserModule implements OnModuleInit {
+export class UserModule {
   constructor(private readonly userService: UserService) {}
 
   // async onModuleInit() {
