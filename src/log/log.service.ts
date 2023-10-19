@@ -30,7 +30,7 @@ export class LogService {
         todayMinus30days: todayMinus30days,
       })
       .groupBy('trunc_date')
-      .getMany();
+      .getSql();
     console.log(data);
   }
 }
