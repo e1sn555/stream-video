@@ -26,7 +26,8 @@ export class LogService {
       `SELECT COUNT(id) AS "count", DATE_TRUNC('DAY', created_at) AS "trunc_date" 
       FROM "logs" "log" 
       WHERE created_at <= '${tomorrow.toISOString()}' AND created_at > '${todayMinus30days.toISOString()}' 
-      GROUP BY trunc_date`,
+      GROUP BY trunc_date
+      ORDER BY trunc_date ASC;`,
     );
     console.log(data);
   }
