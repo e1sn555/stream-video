@@ -37,16 +37,18 @@ export class AdminController {
     res.redirect('/admin/dashboard');
   }
 
-  @Get('/test')
-  async logTes() {}
+  @Get('/chart')
+  async logTes() {
+    const chart = await this.logService.getLogs();
+    return chart;
+  }
 
   @Get('/dashboard')
   @Render('dashboard')
   @UseGuards(AuthGuard)
   async dashboard(@Res() res: Response) {
     const data = await this.adminService.dashboard();
-    const chart = await this.logService.getLogs();
-    return { ...data, chart };
+    return data;
   }
 
   @Get('/login')
