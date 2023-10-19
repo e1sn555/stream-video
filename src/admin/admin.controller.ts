@@ -59,7 +59,7 @@ export class AdminController {
 
     const excelData = Object.keys(video.views).map((key, index) => {
       return {
-        id: index + 1,
+        id: Number(index + 1).toString(),
         title: video.title,
         branch: video.views[key].name,
         views: Number(video.views[key].count).toString(),
