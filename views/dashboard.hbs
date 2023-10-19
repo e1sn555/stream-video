@@ -37,6 +37,9 @@
       </div>
     </div>
     <div class='col-sm-12'>
+      <canvas id='myChart'></canvas>
+    </div>
+    <div class='col-sm-12'>
       <div class='element-wrapper'>
         <h6 class='element-header'>Aktiv 5 video</h6>
         <div class='element-box'>
@@ -85,3 +88,11 @@
     </div>
   </div>
 </div>
+
+<script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+<script>
+  const ctx = document.getElementById('myChart'); new Chart(ctx, { type: 'bar',
+  data: { labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [{ label: '# of Votes', data: [12, 19, 3, 5, 2, 3], borderWidth: 1
+  }] }, options: { scales: { y: { beginAtZero: true } } } });
+</script>

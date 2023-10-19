@@ -29,6 +29,11 @@ export class LogService {
       GROUP BY trunc_date
       ORDER BY trunc_date ASC;`,
     );
-    console.log(data);
+
+    return {
+      last: tomorrow.toISOString(),
+      first: todayMinus30days.toISOString(),
+      data,
+    };
   }
 }

@@ -38,16 +38,15 @@ export class AdminController {
   }
 
   @Get('/test')
-  async logTes() {
-    await this.logService.getLogs();
-  }
+  async logTes() {}
 
   @Get('/dashboard')
   @Render('dashboard')
   @UseGuards(AuthGuard)
   async dashboard(@Res() res: Response) {
     const data = await this.adminService.dashboard();
-    return data;
+    const chart = await this.logService.getLogs();
+    return { ...data, chart };
   }
 
   @Get('/login')
