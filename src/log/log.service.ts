@@ -63,12 +63,14 @@ export class LogService {
           ).count,
         );
       } else {
-        values.push(0);
+        values.push(Number(0).toString());
       }
     });
 
     return {
-      labels,
+      labels: labels.map((item) => {
+        return moment(item).format('YYYY-MM-DD');
+      }),
       data: values,
     };
   }
