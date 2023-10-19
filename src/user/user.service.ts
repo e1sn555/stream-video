@@ -28,14 +28,10 @@ export class UserService {
   }
 
   async updatePassword(id: string, password: string) {
-    return await this.userRepository.update(
-      {
-        id,
-      },
-      {
-        password,
-      },
-    );
+    return await this.userRepository.save({
+      id,
+      password,
+    });
   }
 
   async findById(id: string): Promise<UserEntity> {
