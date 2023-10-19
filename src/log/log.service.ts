@@ -29,6 +29,7 @@ export class LogService {
       .andWhere('created_at > :todayMinus30days', {
         todayMinus30days: todayMinus30days,
       })
+      .groupBy('trunc_date')
       .getMany();
     console.log(data);
   }
