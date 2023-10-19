@@ -49,11 +49,17 @@ export class LogService {
 
     labels.forEach((label) => {
       if (
-        data.find((item: any) => item.trunc_date === label.format('YYYY-MM-DD'))
+        data.find(
+          (item: any) =>
+            moment(item.trunc_date).format('YYYY-MM-DD') ===
+            moment(label).format('YYYY-MM-DD'),
+        )
       ) {
         values.push(
           data.find(
-            (item: any) => item.trunc_date === label.format('YYYY-MM-DD'),
+            (item: any) =>
+              moment(item.trunc_date).format('YYYY-MM-DD') ===
+              moment(label).format('YYYY-MM-DD'),
           ).count,
         );
       } else {
