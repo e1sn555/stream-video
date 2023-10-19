@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DeepPartial, Repository } from 'typeorm';
 import { LogEntity } from './log.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import moment from 'moment';
 
 @Injectable()
 export class LogService {
@@ -13,6 +14,17 @@ export class LogService {
   async addToLogs(log: DeepPartial<LogEntity>) {
     console.log(log);
     await this.logRepository.save(log);
+  }
+
+  getRange(startDate: any, endDate: any, type) {
+    let fromDate = moment(startDate);
+    let toDate = moment(endDate);
+    let diff = toDate.diff(fromDate, type);
+    let range = [];
+    for (let i = 0; i < diff; i++) {
+      range.push(moment(startDate).add(i, type));
+    }
+    return range;
   }
 
   async getLogs() {
@@ -30,10 +42,28 @@ export class LogService {
       ORDER BY trunc_date ASC;`,
     );
 
+    // between dates  todayMinus30days and tomorrow
+    const labels = this.getRange(todayMinus30days, tomorrow, 'days');
+
+    const values = [];
+
+    labels.forEach((label) => {
+      if (
+        data.find((item: any) => item.trunc_date === label.format('YYYY-MM-DD'))
+      ) {
+        values.push(
+          data.find(
+            (item: any) => item.trunc_date === label.format('YYYY-MM-DD'),
+          ).count,
+        );
+      } else {
+        values.push(0);
+      }
+    });
+
     return {
-      last: tomorrow.toISOString(),
-      first: todayMinus30days.toISOString(),
-      data,
+      labels,
+      data: values,
     };
   }
 }
