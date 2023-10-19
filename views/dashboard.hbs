@@ -36,8 +36,10 @@
         </div>
       </div>
     </div>
-    <div class='col-sm-12'>
-      <canvas id='myChart'></canvas>
+    <div class='col-sm-12' style='margin: 10px 0px;'>
+      <div class='element-wrapper'>
+        <canvas id='myChart'></canvas>
+      </div>
     </div>
     <div class='col-sm-12'>
       <div class='element-wrapper'>
@@ -98,8 +100,8 @@
 
   $.ajax({ url: '/admin/chart', success: function(data) { const ctx =
   document.getElementById('myChart'); new Chart(ctx, { type: 'line', data: {
-  labels: data.labels, datasets: [{ label: '# of Votes', data: data.data,
-  borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } } } }); }
-  })
+  labels: data.labels, datasets: [{ label: '30 günlük baxış statistikası', data:
+  data.data, borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true }
+  } } }); } })
 
 </script>
