@@ -33,4 +33,10 @@ export class UserService {
       password: encryptedPassword,
     });
   }
+
+  async findById(id: string): Promise<UserEntity> {
+    return await this.userRepository.findOne({
+      where: { id },
+    });
+  }
 }

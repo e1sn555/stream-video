@@ -13,6 +13,7 @@ import {
   ParseUUIDPipe,
   UseInterceptors,
   UploadedFile,
+  DefaultValuePipe,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { Response } from 'express';
@@ -23,12 +24,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { createWriteStream, unlink } from 'fs';
 import { join } from 'path';
 import { LogService } from 'src/log/log.service';
+import { UserService } from 'src/user/user.service';
+import * as bcrypt from 'bcrypt';
 
 @Controller('/admin')
 export class AdminController {
   constructor(
     private readonly adminService: AdminService,
     private readonly logService: LogService,
+    private readonly userService: UserService,
   ) {}
 
   @Get('/')
@@ -85,6 +89,39 @@ export class AdminController {
     return {
       branches,
     };
+  }
+
+  @Get('/update-password')
+  @Render('update-password')
+  @UseGuards(AuthGuard)
+  async updatePassword(
+    @Query('error', new DefaultValuePipe(0)) error: number,
+    @Query('success', new DefaultValuePipe(0)) success: number,
+  ) {
+    return {
+      error,
+      success,
+    };
+  }
+
+  @Post('/update-password')
+  @UseGuards(AuthGuard)
+  async updatePasswordPost(
+    @Body('currentPassword') currentPassword: string,
+    @Body('newPassword') newPassword: string,
+    @Body('newPasswordConfirm') confirmPassword: string,
+    @Res() res: Response,
+    @Session() session: any,
+  ) {
+    if (newPassword !== confirmPassword) {
+      return res.redirect('/admin/update-password?error=1');
+    }
+    const user = await this.userService.findById(session.user.id);
+    if (!(await bcrypt.compare(currentPassword, user.password))) {
+      return res.redirect('/admin/update-password?error=2');
+    }
+    await this.adminService.updateUserPassword(session.user.id, newPassword);
+    return res.redirect('/admin/update-password?success=1');
   }
 
   @Get('/branches/create')
