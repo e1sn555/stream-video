@@ -22,16 +22,12 @@ export class LogService {
     const todayMinus30days = new Date();
     todayMinus30days.setDate(todayMinus30days.getDate() - 30);
     todayMinus30days.setHours(0, 0, 0);
-    const data = await this.logRepository
-      .createQueryBuilder('log')
-      .select('COUNT(id)', 'count')
-      .addSelect("DATE_TRUNC('DAY', created_at)", 'trunc_date')
-      .where('created_at <= :tomorrow', { tomorrow: tomorrow.toISOString() })
-      .andWhere('created_at > :todayMinus30days', {
-        todayMinus30days: todayMinus30days.toISOString(),
-      })
-      .groupBy('trunc_date')
-      .getMany();
+    const data = await this.logRepository.query(
+      `SELECT COUNT(id) AS "count", DATE_TRUNC('DAY', created_at) AS "trunc_date" 
+      FROM "logs" "log" 
+      WHERE created_at <= '${tomorrow.toISOString()}' AND created_at > '${todayMinus30days.toISOString()}' 
+      GROUP BY trunc_date`,
+    );
     console.log(data);
   }
 }
