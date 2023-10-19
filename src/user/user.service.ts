@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
 import { Repository, DeepPartial } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -24,5 +25,12 @@ export class UserService {
 
   async countUsers(): Promise<number> {
     return await this.userRepository.count();
+  }
+
+  async updatePassword(id: string, password: string) {
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    return await this.userRepository.update(id, {
+      password: encryptedPassword,
+    });
   }
 }

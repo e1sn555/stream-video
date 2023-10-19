@@ -26,6 +26,15 @@ export class AdminService {
     return user;
   }
 
+  async updateUserPassword(
+    id: string,
+    currentPassword: string,
+    password: string,
+  ) {
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    return await this.userService.updatePassword(id, encryptedPassword);
+  }
+
   async getBranches() {
     return await this.branchService.getAllBranches();
   }

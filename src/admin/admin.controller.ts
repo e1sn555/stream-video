@@ -155,7 +155,7 @@ export class AdminController {
       ws.write(banner.buffer);
       ws.close();
     }
-    const result = this.adminService.updateBranch(
+    const result = await this.adminService.updateBranch(
       id,
       name,
       address,
