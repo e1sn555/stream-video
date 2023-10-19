@@ -70,9 +70,9 @@ export class AdminController {
     const workSheet = workBook.addWorksheet('Data');
     workSheet.columns = [
       { header: 'No', key: 'id', width: 25 },
-      { header: 'Title', key: 'title', width: 50 },
-      { header: 'Branch', key: 'branch', width: 50 },
-      { header: 'Views', key: 'views', width: 100 },
+      { header: 'Kampaniya adı', key: 'title', width: 50 },
+      { header: 'Filial', key: 'branch', width: 50 },
+      { header: 'Baxış sayı', key: 'views', width: 100 },
     ];
 
     excelData.forEach((data) => {
