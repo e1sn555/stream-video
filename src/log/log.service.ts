@@ -26,9 +26,9 @@ export class LogService {
       .createQueryBuilder('log')
       .select('COUNT(id)', 'count')
       .addSelect("DATE_TRUNC('DAY', created_at)", 'trunc_date')
-      .where('created_at <= :tomorrow', { tomorrow: tomorrow })
+      .where('created_at <= :tomorrow', { tomorrow: tomorrow.toISOString() })
       .andWhere('created_at > :todayMinus30days', {
-        todayMinus30days: todayMinus30days,
+        todayMinus30days: todayMinus30days.toISOString(),
       })
       .groupBy('trunc_date')
       .getMany();
