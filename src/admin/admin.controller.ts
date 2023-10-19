@@ -99,8 +99,9 @@ export class AdminController {
     @Query('success', new DefaultValuePipe(0)) success: number,
   ) {
     return {
-      error,
-      success,
+      errorCurrentPassword: error === 2,
+      errorNewPassword: error === 1,
+      success: success === 1,
     };
   }
 
