@@ -16,8 +16,9 @@ export class LogService {
   }
 
   async getLogs() {
-    const today = new Date();
-    today.setHours(0, 0, 0);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0);
     const todayMinus30days = new Date();
     todayMinus30days.setDate(todayMinus30days.getDate() - 30);
     todayMinus30days.setHours(0, 0, 0);
@@ -25,7 +26,7 @@ export class LogService {
       .createQueryBuilder('log')
       .select('COUNT(id)', 'count')
       .addSelect("DATE_TRUNC('DAY', created_at)", 'trunc_date')
-      .where('created_at <= :today', { today: today })
+      .where('created_at <= :tomorrow', { tomorrow: tomorrow })
       .andWhere('created_at > :todayMinus30days', {
         todayMinus30days: todayMinus30days,
       })
