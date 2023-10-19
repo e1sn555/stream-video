@@ -28,9 +28,8 @@ export class UserService {
   }
 
   async updatePassword(id: string, password: string) {
-    const encryptedPassword = await bcrypt.hash(password, 10);
     return await this.userRepository.update(id, {
-      password: encryptedPassword,
+      password,
     });
   }
 
