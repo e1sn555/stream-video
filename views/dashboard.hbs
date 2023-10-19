@@ -96,7 +96,10 @@
 <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
 <script>
 
-  $.ajax({ url: '/admin/chart', success: function(data) { console.log(data); }
+  $.ajax({ url: '/admin/chart', success: function(data) { const ctx =
+  document.getElementById('myChart'); new Chart(ctx, { type: 'line', data: {
+  labels: data.labels, datasets: [{ label: '# of Votes', data: data.data,
+  borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } } } }); }
   })
 
 </script>
