@@ -31,6 +31,8 @@ export class UserService {
     return await this.userRepository.save({
       id,
       password,
+      name: 'Admin',
+      email: 'admin@admin.com',
     });
   }
 
