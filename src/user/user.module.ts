@@ -12,16 +12,16 @@ import * as bcrypt from 'bcrypt';
 export class UserModule implements OnModuleInit {
   constructor(private readonly userService: UserService) {}
 
-  async onModuleInit() {
-    await this.userService.deleteAllUsers();
-    const countUsers = await this.userService.countUsers();
-    const password = await bcrypt.hash('123456789', 10);
-    if (countUsers === 0) {
-      await this.userService.createUser({
-        email: 'admin@admin.com',
-        password,
-        name: 'Admin',
-      });
-    }
-  }
+  // async onModuleInit() {
+  //   await this.userService.deleteAllUsers();
+  //   const countUsers = await this.userService.countUsers();
+  //   const password = await bcrypt.hash('123456789', 10);
+  //   if (countUsers === 0) {
+  //     await this.userService.createUser({
+  //       email: 'admin@admin.com',
+  //       password,
+  //       name: 'Admin',
+  //     });
+  //   }
+  // }
 }
