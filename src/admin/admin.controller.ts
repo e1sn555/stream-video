@@ -69,10 +69,10 @@ export class AdminController {
     const workBook = new Excel.Workbook();
     const workSheet = workBook.addWorksheet('Data');
     workSheet.columns = [
-      { header: 'No', key: 'id', width: 50 },
-      { header: 'Title', key: 'title', width: 100 },
-      { header: 'Branch', key: 'branch', width: 100 },
-      { header: 'Views', key: 'views', width: 200 },
+      { header: 'No', key: 'id', width: 25 },
+      { header: 'Title', key: 'title', width: 50 },
+      { header: 'Branch', key: 'branch', width: 50 },
+      { header: 'Views', key: 'views', width: 100 },
     ];
 
     excelData.forEach((data) => {
