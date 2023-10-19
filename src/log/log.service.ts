@@ -21,11 +21,13 @@ export class LogService {
     const todayMinus30days = new Date();
     todayMinus30days.setDate(todayMinus30days.getDate() - 30);
     todayMinus30days.setHours(0, 0, 0);
-    console.log(today, todayMinus30days);
     const data = await this.logRepository
       .createQueryBuilder('log')
-      .where(`DATE_TRUNC('day', "created_at") = :date`, {
-        date: '2023-11-11',
+      .select('COUNT(id)', 'count')
+      .addSelect("DATE_TRUNC('DAY', created_at)", 'trunc_date')
+      .where('created_at <= :today', { today: today })
+      .andWhere('created_at > :todayMinus30days', {
+        todayMinus30days: todayMinus30days,
       })
       .getMany();
     console.log(data);
