@@ -98,6 +98,7 @@ export class AdminController {
     @Query('error', new DefaultValuePipe(0)) error: number,
     @Query('success', new DefaultValuePipe(0)) success: number,
   ) {
+    console.log(error, success);
     return {
       errorCurrentPassword: error === 2,
       errorNewPassword: error === 1,
