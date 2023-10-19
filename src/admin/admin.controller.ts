@@ -26,6 +26,7 @@ import { join } from 'path';
 import { LogService } from 'src/log/log.service';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
+import * as Excel from 'exceljs';
 
 @Controller('/admin')
 export class AdminController {
@@ -45,6 +46,47 @@ export class AdminController {
   async logTes() {
     const chart = await this.logService.getLogs();
     return chart;
+  }
+
+  @Get('excel/:videoId')
+  @UseGuards(AuthGuard)
+  async excel(@Param('videoId') videoId: string, @Res() res: Response) {
+    const video = await this.adminService.getVideo(videoId);
+
+    if (!video) {
+      return res.render('404');
+    }
+
+    const excelData = Object.keys(video.views).map((key, index) => {
+      return {
+        id: index + 1,
+        title: video.title,
+        branch: video.views[key].name,
+        views: video.views[key].count,
+      };
+    });
+
+    const workBook = new Excel.Workbook();
+    const workSheet = workBook.addWorksheet('Data');
+    workSheet.columns = [
+      { header: 'No', key: 'id', width: 50 },
+      { header: 'Title', key: 'title', width: 100 },
+      { header: 'Branch', key: 'branch', width: 100 },
+      { header: 'Views', key: 'views', width: 200 },
+    ];
+
+    excelData.forEach((data) => {
+      workSheet.addRow(data);
+    });
+
+    const buffer = await workBook.xlsx.writeBuffer();
+    const fileName = `data-${uuidv4()}.xlsx`;
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+    res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
+    res.send(buffer);
   }
 
   @Get('/dashboard')
