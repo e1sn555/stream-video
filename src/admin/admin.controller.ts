@@ -100,9 +100,9 @@ export class AdminController {
   ) {
     console.log(error, success);
     return {
-      errorCurrentPassword: error === 2,
-      errorNewPassword: error === 1,
-      success: success === 1,
+      errorCurrentPassword: error == 2,
+      errorNewPassword: error == 1,
+      success: success == 1,
     };
   }
 
