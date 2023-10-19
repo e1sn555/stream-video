@@ -62,7 +62,7 @@ export class AdminController {
         id: index + 1,
         title: video.title,
         branch: video.views[key].name,
-        views: video.views[key].count,
+        views: Number(video.views[key].count).toString(),
       };
     });
 
