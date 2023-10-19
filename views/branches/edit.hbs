@@ -11,7 +11,11 @@
     </h4>
   </div>
   <div class='col-md-10 mt-4 mx-auto'>
-    <form action='/admin/branches/edit/{{branch.id}}' method='post'>
+    <form
+      action='/admin/branches/edit/{{branch.id}}'
+      method='post'
+      enctype='multipart/form-data'
+    >
       {{#if branch.banner}}
         <img
           src='/images/{{branch.banner}}'
