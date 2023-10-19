@@ -103,7 +103,7 @@
   $.ajax({ url: '/admin/chart', success: function(data) { const ctx =
   document.getElementById('myChart'); new Chart(ctx, { type: 'line', data: {
   labels: data.labels, datasets: [{ label: '30 günlük baxış statistikası', data:
-  data.data, borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true }
-  } } }); } })
+  data.data, borderWidth: 1, borderColor: 'rgb(75, 192, 192)', }] }, options: {
+  scales: { y: { beginAtZero: true } } } }); } })
 
 </script>
