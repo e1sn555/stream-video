@@ -118,6 +118,7 @@ export class AdminController {
       return res.redirect('/admin/update-password?error=1');
     }
     const user = await this.userService.findById(session.user.id);
+    console.log(user, session.user);
     if (!(await bcrypt.compare(currentPassword, user.password))) {
       return res.redirect('/admin/update-password?error=2');
     }
