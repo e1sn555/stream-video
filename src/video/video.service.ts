@@ -85,12 +85,16 @@ export class VideoService {
     branchId: string,
     skip: number,
   ): Promise<VideoEntity> {
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
     return await this.videoRepository
       .createQueryBuilder('video')
       .leftJoinAndSelect('video.branches', 'branch')
       .where('branch.id = :branchId', { branchId })
-      .andWhere('video.startDate <= :today', { today: new Date() })
-      .andWhere('video.endDate >= :today', { today: new Date() })
+      .andWhere('video.startDate <= :today', { today })
+      .andWhere('video.endDate >= :today', { today })
       .orderBy('video.createdAt', 'ASC')
       .skip(skip)
       .getOne();
